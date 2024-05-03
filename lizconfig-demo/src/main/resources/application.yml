@@ -1,0 +1,11 @@
+server:
+    port: 8888
+
+spring:
+    application:
+        name: lizconfig-demo
+
+liz:
+    a: a00
+    b: b00
+    c: c00
