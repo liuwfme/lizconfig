@@ -1,6 +1,6 @@
 package cn.liz.lizconfig.client.config;
 
-import cn.liz.lizconfig.client.config.repository.LizRepository;
+import cn.liz.lizconfig.client.repository.LizRepository;
 
 public interface LizConfigService {
 

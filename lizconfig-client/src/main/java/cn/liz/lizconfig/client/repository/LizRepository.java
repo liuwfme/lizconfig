@@ -1,4 +1,4 @@
-package cn.liz.lizconfig.client.config.repository;
+package cn.liz.lizconfig.client.repository;
 
 import cn.liz.lizconfig.client.config.ConfigMeta;
 
