@@ -8,5 +8,5 @@ create table if not exists `configs` (
 
 insert into configs (app, env, namespace, pkey, pval) values ('app1', 'dev', 'public', 'a', '1.0.0');
 insert into configs (app, env, namespace, pkey, pval) values ('app1', 'dev', 'public', 'b', 'http://localhost:9192');
-insert into configs (app, env, namespace, pkey, pval) values ('app1', 'dev', 'public', 'c', 'cc100');
+insert into configs (app, env, namespace, pkey, pval) values ('app1', 'dev', 'public', 'c', 'c100');
 

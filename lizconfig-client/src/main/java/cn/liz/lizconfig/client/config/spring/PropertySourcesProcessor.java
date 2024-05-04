@@ -1,8 +1,8 @@
 package cn.liz.lizconfig.client.config.spring;
 
+import cn.liz.lizconfig.client.config.ConfigMeta;
 import cn.liz.lizconfig.client.config.LizConfigService;
 import cn.liz.lizconfig.client.config.LizConfigServiceImpl;
-import cn.liz.lizconfig.client.config.spring.LizPropertySource;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -13,9 +13,6 @@ import org.springframework.core.env.CompositePropertySource;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class PropertySourcesProcessor implements BeanFactoryPostProcessor, EnvironmentAware, PriorityOrdered {
 
     private static final String LIZ_PROPERTY_SOURCE = "lizPropertySource";
@@ -25,26 +22,27 @@ public class PropertySourcesProcessor implements BeanFactoryPostProcessor, Envir
     Environment environment;
 
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        ConfigurableEnvironment env = (ConfigurableEnvironment) environment;
-        if (env.getPropertySources().contains(LIZ_PROPERTY_SOURCES)) {
+        ConfigurableEnvironment environment = (ConfigurableEnvironment) this.environment;
+        if (environment.getPropertySources().contains(LIZ_PROPERTY_SOURCES)) {
             return;
         }
 
         // 去config-server 远程获取配置
-        // TODO: 2024/5/3
-        Map<String, String> config = new HashMap<String, String>();
-        config.put("liz.a", "dev300");
-        config.put("liz.b", "dev400");
-        config.put("liz.c", "dev500");
+        String app = environment.getProperty("lizconfig.app", "app1");
+        String env = environment.getProperty("lizconfig.env", "dev");
+        String namespace = environment.getProperty("lizconfig.namespace", "public");
+        String configServer = environment.getProperty("lizconfig.configServer", "http://localhost:9129");
 
-        LizConfigService configService = new LizConfigServiceImpl(config);
+        ConfigMeta configMeta = new ConfigMeta(app, env, namespace, configServer);
+
+        LizConfigService configService = LizConfigService.getDefault(configMeta);
 
         LizPropertySource propertySource = new LizPropertySource(LIZ_PROPERTY_SOURCE, configService);
 
         CompositePropertySource composite = new CompositePropertySource(LIZ_PROPERTY_SOURCES);
         composite.addPropertySource(propertySource);
 
-        env.getPropertySources().addFirst(composite);
+        environment.getPropertySources().addFirst(composite);
     }
 
     public int getOrder() {
