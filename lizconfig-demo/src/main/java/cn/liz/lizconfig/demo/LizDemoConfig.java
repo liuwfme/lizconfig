@@ -7,4 +7,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "liz")
 public class LizDemoConfig {
     String a;
+    String b;
 }

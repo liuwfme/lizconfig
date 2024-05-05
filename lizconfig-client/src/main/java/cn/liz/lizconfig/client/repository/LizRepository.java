@@ -12,4 +12,6 @@ public interface LizRepository {
 
     Map<String, String> getConfig();
 
+    void addListener(ChangeListener listener);
+
 }

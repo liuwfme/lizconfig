@@ -1,15 +1,23 @@
 
-###
+### list
 GET http://localhost:9129/list?app=app1&env=dev&namespace=public
 Accept: application/json
 
-###
+### update
 POST http://localhost:9129/update?app=app1&env=dev&namespace=public
 Content-Type: application/json
 
 {
-  "a": "dev200",
-  "c": "ccc100",
-  "d": "d100"
+  "liz.a": "dev20000",
+  "liz.c": "ccc100",
+  "liz.d": "d100"
 }
+
+### version
+GET http://localhost:9129/version?app=app1&env=dev&namespace=public
+
+### demo 8888
+GET http://localhost:8888/demo
+
+
 

@@ -17,5 +17,10 @@
 依托于 spring 对配置信息的两种管理方式，
 把从远程 server 获取到的配置信息，放到spring的环境变量的最前面
 
+## 配置刷新流程
+### 服务启动时，从远程拉配置，放到 LizConfigService 里面
+### LizRepository 添加一个监听，当 LizRepository 轮询感知到配置更新时，触发监听事件，
+### 更新 LizConfigService 里面的配置，然后通知spring去刷新bean
+
 # ============ demo ============
 ## 引入 client 提供的配置中心注解，即可实现从配置中心获取配置

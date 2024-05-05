@@ -11,6 +11,7 @@ import java.util.Optional;
 
 public class LizConfigRegistrar implements ImportBeanDefinitionRegistrar {
 
+    @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         System.out.println(" ====== register PropertySourcesProcessor");
 
@@ -19,7 +20,6 @@ public class LizConfigRegistrar implements ImportBeanDefinitionRegistrar {
         Optional<String> any = Arrays.stream(registry.getBeanDefinitionNames())
                 .filter(beanDefinitionName::equals)
                 .findAny();
-
         if (any.isPresent()) {
             System.out.println("PropertySourcesProcessor already registered !");
             return;
