@@ -7,10 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DemoController {
+
     @Value("${liz.a}")
     private String a;
+
     @Value("${liz.b}")
     private String b;
+
+    @Value("${liz.a}.${liz.b}")
+    private String ab;
 
     @Autowired
     private LizDemoConfig demoConfig;

@@ -1,8 +1,5 @@
-package cn.liz.lizconfig.client.config.spring;
+package cn.liz.lizconfig.client.config;
 
-import cn.liz.lizconfig.client.config.ConfigMeta;
-import cn.liz.lizconfig.client.config.LizConfigService;
-import cn.liz.lizconfig.client.config.LizConfigServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;

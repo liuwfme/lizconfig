@@ -1,6 +1,6 @@
 package cn.liz.lizconfig.client.annotation;
 
-import cn.liz.lizconfig.client.config.spring.LizConfigRegistrar;
+import cn.liz.lizconfig.client.config.LizConfigRegistrar;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

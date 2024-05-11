@@ -1,6 +1,5 @@
-package cn.liz.lizconfig.client.config.spring;
+package cn.liz.lizconfig.client.config;
 
-import cn.liz.lizconfig.client.config.LizConfigService;
 import org.springframework.core.env.EnumerablePropertySource;
 
 public class LizPropertySource extends EnumerablePropertySource<LizConfigService> {
