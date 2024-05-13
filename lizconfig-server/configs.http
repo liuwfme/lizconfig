@@ -19,5 +19,24 @@ GET http://localhost:9129/version?app=app1&env=dev&namespace=public
 ### demo 8888
 GET http://localhost:8888/demo
 
+### update lizroc config
+POST http://localhost:9129/update?app=app1&env=dev&namespace=public
+Content-Type: application/json
+
+{
+  "lizrpc.provider.metas.dc": "sh",
+  "lizrpc.provider.metas.gray": "true",
+  "lizrpc.provider.metas.unit": "S001",
+  "lizrpc.provider.metas.tc": 123
+}
+
+### get status
+GET http://localhost:9129/status
+
+### get status
+GET http://localhost:9130/status
+
+### get status
+GET http://localhost:9131/status
 
 

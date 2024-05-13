@@ -1,5 +1,6 @@
 package cn.liz.lizconfig.server.controller;
 
+import cn.liz.lizconfig.server.DistributedLocks;
 import cn.liz.lizconfig.server.mapper.ConfigsMapper;
 import cn.liz.lizconfig.server.model.Configs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,10 @@ import java.util.Map;
 public class LizConfigController {
 
     @Autowired
-    ConfigsMapper configsMapper;
+    private DistributedLocks locks;
+
+    @Autowired
+    private ConfigsMapper configsMapper;
 
     Map<String, Long> VERSIONS = new HashMap<>();
 
@@ -44,6 +48,11 @@ public class LizConfigController {
     @GetMapping("/version")
     public long version(@RequestParam("app") String app, String env, String namespace) {
         return VERSIONS.getOrDefault(app + "-" + env + "-" + namespace, -1L);
+    }
+
+    @GetMapping("/status")
+    public boolean status() {
+        return locks.getLocked().get();
     }
 
 }

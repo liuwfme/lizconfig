@@ -10,3 +10,11 @@ insert into configs (app, env, namespace, pkey, pval) values ('app1', 'dev', 'pu
 insert into configs (app, env, namespace, pkey, pval) values ('app1', 'dev', 'public', 'b', 'http://localhost:9129');
 insert into configs (app, env, namespace, pkey, pval) values ('app1', 'dev', 'public', 'c', 'c100');
 
+create table if not exists `locks` (
+    `id` int primary key not null,
+    `app` varchar (64) null
+);
+
+insert into locks(id, app) values (1, 'lizconfig-server');
+
+
